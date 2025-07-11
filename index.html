@@ -1,86 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salman Malik | Embedded Systems Engineer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #0a192f;
-      color: #ccd6f6;
-    }
-    header {
-      background-color: #112240;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .card {
-      background-color: #112240;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
-    .card h2 {
-      margin-top: 0;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #112240;
-      font-size: 14px;
-    }
-    a {
-      color: #64ffda;
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Salman Malik</h1>
-    <p>Embedded Systems Engineer | Firmware | IoT | RTOS</p>
+    <nav>
+      <h1>Salman Malik</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section>
-    <div class="card">
-      <h2>About Me</h2>
-      <p>
-        I’m an embedded systems engineer with 3+ years of experience in designing, programming,
-        and optimizing firmware for microcontrollers like STM32, ESP32, and nRF52. I specialize in
-        low-power systems, RTOS-based applications, sensor integration, and IoT solutions.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>BLE Beacon:</strong> Custom advertising on nRF52832 using Zephyr RTOS</li>
-        <li><strong>IoT Sensor Node:</strong> Low-power ESP32-based sensor with MQTT communication</li>
-        <li><strong>STM32 USB CDC:</strong> Real-time data transfer and USB interface implementation</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Contact</h2>
-      <p>Email: youremail@example.com</p>
-      <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+  <section id="hero">
+    <div class="hero-text">
+      <h2>Hi, I'm Salman</h2>
+      <p>Embedded Systems Engineer | Firmware Developer | IoT Enthusiast</p>
     </div>
   </section>
 
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm an embedded systems engineer with 3+ years of experience building real-time, low-power applications on platforms like STM32, ESP32, and nRF52. I specialize in firmware architecture, sensor integration, RTOS development, and connectivity protocols including BLE and MQTT.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-grid">
+      <li>C / C++</li>
+      <li>STM32, ESP32, nRF52</li>
+      <li>FreeRTOS, Zephyr</li>
+      <li>UART, SPI, I2C, CAN</li>
+      <li>BLE, WiFi, MQTT</li>
+      <li>Git, VS Code, KiCAD</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <img src="assets/project1.png" alt="BLE Beacon">
+      <div>
+        <h3>BLE Beacon Firmware</h3>
+        <p>Custom BLE advertising packets using nRF52832 + Zephyr RTOS. Supports OTA updates and low-power sleep cycles.</p>
+        <a href="https://github.com/yourusername/ble-beacon">View on GitHub</a>
+      </div>
+    </div>
+    <div class="project">
+      <img src="assets/project2.png" alt="IoT Sensor Node">
+      <div>
+        <h3>IoT Sensor Node</h3>
+        <p>Low-power ESP32-based sensor node with DHT22, deep sleep modes, and MQTT communication to a cloud dashboard.</p>
+        <a href="https://github.com/yourusername/iot-sensor-node">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email: youremail@example.com</p>
+    <p>🔗 GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+    <p>🔗 LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
+  </section>
+
   <footer>
-    &copy; 2025 Salman Malik. All rights reserved.
+    <p>&copy; 2025 Salman Malik. All rights reserved.</p>
   </footer>
 </body>
 </html>
