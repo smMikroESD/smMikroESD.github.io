@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Salman - Embedded Systems Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #2563eb;
+            --accent-color: #60a5fa;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --border-color: #374151;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .contact-info {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .experience-company {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .experience-date {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .experience-responsibilities {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-responsibilities li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-responsibilities li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Education Section */
+        .education-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .education-degree {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .education-university {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-date {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Muhammad Salman</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Muhammad Salman</h1>
+                <p class="subtitle">Embedded Systems Engineer</p>
+                <p>Passionate about developing energy-efficient firmware and innovative embedded solutions</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="mailto:salmanmalik71831@gmail.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="contact-info">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:salmanmalik71831@gmail.com">salmanmalik71831@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(+92) 3137760996</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="http://www.linkedin.com/in/salmanmalik718" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Narowal, Punjab, Pakistan</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span>November 22, 1999</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>I am a dedicated Embedded Systems Engineer with over 2 years of professional experience in developing energy-efficient firmware for embedded systems. Currently working at Powersoft19 in Lahore, I specialize in ARM Cortex-based devices and have extensive experience with various microcontroller platforms.</p>
+                    
+                    <p>My expertise spans across multiple domains including IoT security, real-time operating systems, and embedded Linux. I have successfully delivered numerous projects ranging from BLE beacons to industrial safety systems, always focusing on power optimization and robust performance.</p>
+                    
+                    <p>I hold a Bachelor's degree in Electrical and Electronics Engineering from the University of Engineering and Technology, Lahore, and am passionate about pushing the boundaries of embedded technology through innovative solutions and continuous learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Embedded C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Assembly</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-microchip"></i> Microcontrollers</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">STM32 (ARM Cortex)</span>
+                        <span class="skill-tag">ESP32/ESP8266</span>
+                        <span class="skill-tag">Nordic nRF5</span>
+                        <span class="skill-tag">AVR</span>
+                        <span class="skill-tag">Texas Instruments</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Keil uVision</span>
+                        <span class="skill-tag">IAR</span>
+                        <span class="skill-tag">STM32CubeIDE</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Segger Embedded Studio</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Operating Systems</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FreeRTOS</span>
+                        <span class="skill-tag">CMX RTOS</span>
+                        <span class="skill-tag">Zephyr OS</span>
+                        <span class="skill-tag">Embedded Linux</span>
+                        <span class="skill-tag">Yocto</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-bug"></i> Debugging Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JTAG</span>
+                        <span class="skill-tag">SWD</span>
+                        <span class="skill-tag">Logic Analyzers</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i> IoT & Security</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Secure Boot</span>
+                        <span class="skill-tag">Azure IoT Hub</span>
+                        <span class="skill-tag">ATECC608A</span>
+                        <span class="skill-tag">BLE DFU</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Embedded Firmware Engineer</div>
+                            <div class="experience-company">Powersoft19 - Lahore, Pakistan</div>
+                        </div>
+                        <div class="experience-date">Apr 2024 - Present</div>
+                    </div>
+                    <ul class="experience-responsibilities">
+                        <li>Develop energy-efficient firmware for embedded systems</li>
+                        <li>Perform debugging, troubleshooting, and R&D for prototype development and field testing</li>
+                        <li>Work extensively with Embedded C and Assembly on ARM Cortex-based devices</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Embedded Systems Engineer</div>
+                            <div class="experience-company">MikroStarTech - Lahore, Pakistan</div>
+                        </div>
+                        <div class="experience-date">Sep 2022 - Mar 2024</div>
+                    </div>
+                    <ul class="experience-responsibilities">
+                        <li>Designed firmware architecture for multiple embedded projects</li>
+                        <li>Conducted in-house prototype development and debugging</li>
+                        <li>Worked with ESP32, Arduino, NRF52840, NRF52832, and various microcontroller environments</li>
+                        <li>Developed applications using Embedded C, C++, and Python</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">BLE Beacon with LIS3DH</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Developed a power-optimized Bluetooth Low Energy beacon on the nRF52832 using Zephyr RTOS, featuring LIS3DH accelerometer integration for motion detection with full runtime customization via BLE application.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">nRF52832</span>
+                            <span class="tech-tag">Zephyr RTOS</span>
+                            <span class="tech-tag">BLE</span>
+                            <span class="tech-tag">LIS3DH</span>
+                            <span class="tech-tag">DFU OTA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Gas Detection System</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Developed a real-time gas detection system using STM32F407 microcontroller to enhance industrial worker safety, featuring BLE communication, ADC-based sensors, and CMX RTOS task management.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">STM32F407</span>
+                            <span class="tech-tag">BLE</span>
+                            <span class="tech-tag">ADC</span>
+                            <span class="tech-tag">CMX RTOS</span>
+                            <span class="tech-tag">SPI Flash</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Baseball Training System</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Developed a BLE-enabled baseball training system using BMD-340 module with Time-of-Flight sensor for pitch timing, featuring stepper motor control, LCD feedback, and NFC player identification.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">BMD-340</span>
+                            <span class="tech-tag">TOF Sensor</span>
+                            <span class="tech-tag">BLE</span>
+                            <span class="tech-tag">Stepper Motor</span>
+                            <span class="tech-tag">NFC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Secure Azure IoT Integration</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Integrated ESP32 and ESP32-C3 microcontrollers with Microsoft Azure IoT Hub using Microchip ATECC608A hardware security module for secure authentication and TLS-based communication.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">ESP32</span>
+                            <span class="tech-tag">ESP32-C3</span>
+                            <span class="tech-tag">Azure IoT Hub</span>
+                            <span class="tech-tag">ATECC608A</span>
+                            <span class="tech-tag">TLS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Secure Boot for AVR</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Developed a secure boot mechanism for AVR microcontrollers using ESP32, implementing secure firmware transfer and verification with Arduino as ESP-IDF component for reliable field updates.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">AVR</span>
+                            <span class="tech-tag">ESP32</span>
+                            <span class="tech-tag">ESP-IDF</span>
+                            <span class="tech-tag">Secure Boot</span>
+                            <span class="tech-tag">BLE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Reverse Vending Machine</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Developed a complete system with Flutter mobile app for QR code scanning, Node.js backend, and STM32F4VGT6 microcontroller for real-time sorting of plastic bottles and cans with MySQL database.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">STM32F4VGT6</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">QR Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <div class="education-degree">Bachelor of Science in Electrical and Electronics Engineering</div>
+                <div class="education-university">University of Engineering and Technology, Lahore</div>
+                <div class="education-date">2018 - 2022</div>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    <a href="https://uet.edu.pk/home/" target="_blank" style="color: var(--primary-color);">
+                        <i class="fas fa-external-link-alt"></i> Visit University Website
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> Urdu (Native)</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Mother Tongue</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> English</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Reading: C2</span>
+                        <span class="skill-tag">Speaking: C1</span>
+                        <span class="skill-tag">Listening: B2</span>
+                        <span class="skill-tag">Writing: B2</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> German</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Basic Level: A1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Professional References</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-user-tie"></i> Muhammad Moeez</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Team Lead Embedded Systems Engineer</p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:moeez@mikrostartech.com">moeez@mikrostartech.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(+92) 3000600197</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-user-tie"></i> Farhan Ahmed</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Lecturer at University of Engineering & Technology</p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:farhanbutt@uet.edu.pk">farhanbutt@uet.edu.pk</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(+92) 3454540535</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Interests & Hobbies</h2>
+            <div class="about-content" style="grid-template-columns: 1fr; text-align: center;">
+                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                        <i class="fas fa-futbol" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        <h3>Football</h3>
+                        <p style="color: var(--text-secondary);">Passionate about the beautiful game</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                        <i class="fas fa-book" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        <h3>Book Reading</h3>
+                        <p style="color: var(--text-secondary);">Continuous learning through literature</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:salmanmalik71831@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="http://www.linkedin.com/in/salmanmalik718" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="tel:+923137760996" title="Phone">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Muhammad Salman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--bg-primary)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                typeWriter(heroTitle, 'Muhammad Salman', 150);
+            }
+        });
+
+        // Add active navigation highlighting
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+    </script>
+
+    <style>
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Add some additional responsive improvements */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .cta-buttons {
+                gap: 0.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</body>
+</html>
