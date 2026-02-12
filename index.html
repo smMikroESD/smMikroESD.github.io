@@ -68,9 +68,9 @@
             --accent-color: #c4b5fd;
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --bg-primary: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --border-color: #e7e5e4;
+            --bg-primary: #f8f7f4;
+            --bg-secondary: #eeebe5;
+            --border-color: #e0ddd5;
         }
 
         [data-theme="dark"] {
@@ -278,21 +278,35 @@
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             animation: fadeInUp 1s ease;
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
+        .hero .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero .platforms {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.5s both;
         }
 
         .cta-buttons {
@@ -343,6 +357,10 @@
 
         .section:nth-child(even) {
             background: var(--bg-secondary);
+        }
+
+        .section:nth-child(odd) {
+            background: var(--bg-primary);
         }
 
         .section-title {
@@ -419,8 +437,57 @@
             color: var(--text-secondary);
         }
 
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .highlight-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
         .contact-info {
-            background: var(--bg-primary);
+            background: #ffffff;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -455,7 +522,7 @@
         }
 
         .skill-category {
-            background: var(--bg-primary);
+            background: #ffffff;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -495,6 +562,37 @@
             gap: 0.5rem;
         }
 
+        /* Individual card colors */
+        .skill-category:nth-child(1) h3 { color: #2563eb; } /* Deep Blue */
+        .skill-category:nth-child(1) .skill-tag { background: #3b82f6; }
+        .skill-category:nth-child(1)::before { background: linear-gradient(45deg, #2563eb, #3b82f6); }
+        .skill-category:nth-child(1):hover { box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2); }
+
+        .skill-category:nth-child(2) h3 { color: #0d9488; } /* Teal */
+        .skill-category:nth-child(2) .skill-tag { background: #14b8a6; }
+        .skill-category:nth-child(2)::before { background: linear-gradient(45deg, #0d9488, #14b8a6); }
+        .skill-category:nth-child(2):hover { box-shadow: 0 15px 40px rgba(13, 148, 136, 0.2); }
+
+        .skill-category:nth-child(3) h3 { color: #7c3aed; } /* Purple */
+        .skill-category:nth-child(3) .skill-tag { background: #8b5cf6; }
+        .skill-category:nth-child(3)::before { background: linear-gradient(45deg, #7c3aed, #8b5cf6); }
+        .skill-category:nth-child(3):hover { box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2); }
+
+        .skill-category:nth-child(4) h3 { color: #059669; } /* Emerald */
+        .skill-category:nth-child(4) .skill-tag { background: #10b981; }
+        .skill-category:nth-child(4)::before { background: linear-gradient(45deg, #059669, #10b981); }
+        .skill-category:nth-child(4):hover { box-shadow: 0 15px 40px rgba(5, 150, 105, 0.2); }
+
+        .skill-category:nth-child(5) h3 { color: #ea580c; } /* Orange */
+        .skill-category:nth-child(5) .skill-tag { background: #f97316; }
+        .skill-category:nth-child(5)::before { background: linear-gradient(45deg, #ea580c, #f97316); }
+        .skill-category:nth-child(5):hover { box-shadow: 0 15px 40px rgba(234, 88, 12, 0.2); }
+
+        .skill-category:nth-child(6) h3 { color: #4f46e5; } /* Indigo */
+        .skill-category:nth-child(6) .skill-tag { background: #6366f1; }
+        .skill-category:nth-child(6)::before { background: linear-gradient(45deg, #4f46e5, #6366f1); }
+        .skill-category:nth-child(6):hover { box-shadow: 0 15px 40px rgba(79, 70, 229, 0.2); }
+
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
@@ -529,7 +627,7 @@
         .experience-item {
             position: relative;
             margin-bottom: 3rem;
-            background: var(--bg-primary);
+            background: #ffffff;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -607,7 +705,7 @@
         }
 
         .project-card {
-            background: var(--bg-primary);
+            background: #ffffff;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -639,6 +737,31 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 1.5rem;
+        }
+
+        /* Individual project card colors */
+        .project-card:nth-child(1) .project-header {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+
+        .project-card:nth-child(2) .project-header {
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+        }
+
+        .project-card:nth-child(3) .project-header {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+
+        .project-card:nth-child(4) .project-header {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+
+        .project-card:nth-child(5) .project-header {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+
+        .project-card:nth-child(6) .project-header {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
         }
 
         .project-title {
@@ -674,7 +797,7 @@
 
         /* Education Section */
         .education-card {
-            background: var(--bg-primary);
+            background: #ffffff;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -796,7 +919,7 @@
 
         /* Contact Form Styles */
         .contact-form {
-            background: var(--bg-primary);
+            background: #ffffff;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -934,6 +1057,18 @@
                 font-size: 1.2rem;
             }
 
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero .platforms {
+                font-size: 0.95rem;
+            }
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -1013,7 +1148,9 @@
             <div class="hero-content">
                 <h1>Salman Malik</h1>
                 <p class="subtitle">Embedded Systems Engineer</p>
-                <p>Passionate about developing energy-efficient firmware and innovative embedded solutions</p>
+                <p class="tagline">Designing the Brains Behind Modern Devices</p>
+                <p>Specialising in microcontrollers, IoT, and real-time embedded systems</p>
+                <p class="platforms">ARM Cortex • ESP32 • STM32 • NRF52 Series</p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary" aria-label="View my projects">
                         <i class="fas fa-code" aria-hidden="true"></i> View Projects
@@ -1034,11 +1171,32 @@
                     <img src="profile.jpeg" alt="Salman Malik - Embedded Systems Engineer" class="profile-photo" loading="lazy">
                 </div>
                 <div class="about-text">
-                    <p>I am a dedicated Embedded Systems Engineer with over 2 years of professional experience in developing energy-efficient firmware for embedded systems. Currently working at Powersoft19 in Lahore, I specialize in ARM Cortex-based devices and have extensive experience with various microcontroller platforms.</p>
+                    <p>I'm an <strong>Embedded Systems Engineer</strong> passionate about creating intelligent, energy-efficient solutions that power the devices we use every day. Currently driving innovation at <strong>Powersoft19 in Lahore</strong>, where I architect firmware for ARM Cortex-based systems and bring complex embedded projects to life.</p>
                     
-                    <p>My expertise spans across multiple domains including IoT security, real-time operating systems, and embedded Linux. I have successfully delivered numerous projects ranging from BLE beacons to industrial safety systems, always focusing on power optimization and robust performance.</p>
+                    <p>My journey in embedded systems has taken me from developing <strong>secure IoT integrations with Azure</strong> to building <strong>real-time industrial safety systems</strong>. I thrive in the intersection of hardware and software, whether it's optimizing power consumption for BLE beacons or implementing secure boot mechanisms for production devices.</p>
                     
-                    <p>I hold a Bachelor's degree in Electrical and Electronics Engineering from the University of Engineering and Technology, Lahore, and am passionate about pushing the boundaries of embedded technology through innovative solutions and continuous learning.</p>
+                    <p>With expertise spanning <strong>FreeRTOS, Zephyr, and embedded Linux</strong>, combined with hands-on experience in <strong>IoT security protocols</strong>, I bring both depth and breadth to every project. My approach? Write clean, maintainable code that not only works but excels in production environments.</p>
+                    
+                    <p>When I'm not debugging firmware or optimizing interrupt handlers, I'm exploring the latest in embedded technologies and contributing to the thriving maker community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding: 60px 0;">
+        <div class="container">
+            <div class="highlight-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">Microcontroller Platforms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">RTOS Environments</span>
                 </div>
             </div>
         </div>
@@ -1664,8 +1822,6 @@
         function typeWriter(element, text, speed = 100) {
             let i = 0;
             element.innerHTML = '';
-            element.style.borderRight = '3px solid white';
-            element.style.paddingRight = '5px';
             
             function type() {
                 if (i < text.length) {
@@ -1673,12 +1829,9 @@
                     i++;
                     setTimeout(type, speed);
                 } else {
-                    // Blinking cursor effect
-                    setInterval(() => {
-                        element.style.borderRight = element.style.borderRight === '3px solid transparent' 
-                            ? '3px solid white' 
-                            : '3px solid transparent';
-                    }, 530);
+                    // Remove cursor after typing is complete
+                    element.style.borderRight = 'none';
+                    element.style.paddingRight = '0';
                 }
             }
             
@@ -1687,13 +1840,13 @@
 
         // Initialize typing effect when page loads
         window.addEventListener('load', function() {
-            const heroTitle = document.querySelector('.hero h1');
-            if (heroTitle) {
-                const titleText = heroTitle.textContent;
-                heroTitle.textContent = '';
+            const heroTagline = document.querySelector('.hero .tagline');
+            if (heroTagline) {
+                const taglineText = heroTagline.textContent;
+                heroTagline.textContent = '';
                 setTimeout(() => {
-                    typeWriter(heroTitle, titleText, 120);
-                }, 300);
+                    typeWriter(heroTagline, taglineText, 80);
+                }, 500);
             }
         });
 
