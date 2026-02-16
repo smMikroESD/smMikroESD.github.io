@@ -99,35 +99,6 @@
         }
 
         /* Floating Logo */
-        .floating-logo {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 1000;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(167, 139, 250, 0.2);
-        }
-
-        [data-theme="dark"] .floating-logo {
-            background: rgba(51, 65, 85, 0.95);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(167, 139, 250, 0.3);
-        }
-
-        .floating-logo:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(167, 139, 250, 0.3);
-        }
-
         /* Floating Navigation */
         .floating-nav {
             position: fixed;
@@ -239,7 +210,7 @@
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 4.5rem;
+            top: 1rem;
             left: 1rem;
             z-index: 1001;
             width: 56px;
@@ -271,7 +242,7 @@
         .mobile-nav {
             display: none;
             position: fixed;
-            top: 7rem;
+            top: 5rem;
             left: 1rem;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.98);
@@ -1204,13 +1175,6 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .floating-logo {
-                top: 1rem;
-                left: 1rem;
-                font-size: 1.2rem;
-                padding: 0.5rem 1rem;
-            }
-
             .theme-toggle {
                 top: 1rem;
                 right: 1rem;
@@ -1225,6 +1189,8 @@
 
             .menu-toggle {
                 display: block;
+                top: 1rem;
+                left: 1rem;
             }
 
             .scroll-to-top {
@@ -1303,9 +1269,6 @@
 <body>
     <!-- Skip to Main Content for Accessibility -->
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
-
-    <!-- Floating Logo -->
-    <div class="floating-logo">Salman Malik</div>
 
     <!-- Theme Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
@@ -2150,7 +2113,7 @@
 
         /* Print Styles */
         @media print {
-            .floating-logo, .floating-nav, .theme-toggle, .scroll-to-top, .cta-buttons {
+            .floating-nav, .theme-toggle, .scroll-to-top, .cta-buttons, .menu-toggle, .mobile-nav {
                 display: none !important;
             }
 
