@@ -257,9 +257,76 @@
             padding: 0.5rem;
         }
 
+        .menu-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(167, 139, 250, 0.3);
+        }
+
         .menu-toggle:focus {
             outline: 2px solid var(--primary-color);
             outline-offset: 4px;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 2rem;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            min-width: 200px;
+        }
+
+        [data-theme="dark"] .mobile-nav {
+            background: rgba(30, 41, 59, 0.98);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideInUp 0.3s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-link i {
+            font-size: 1.1rem;
+            width: 20px;
         }
 
         /* Scroll to Top Button */
@@ -1156,6 +1223,10 @@
                 display: none;
             }
 
+            .menu-toggle {
+                display: block;
+            }
+
             .scroll-to-top {
                 bottom: 20px;
                 right: 20px;
@@ -1263,6 +1334,36 @@
         </a>
         <a href="#contact" class="nav-button" data-label="Contact" aria-label="Go to Contact">
             <i class="fas fa-envelope"></i>
+        </a>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars" id="menuIcon" aria-hidden="true"></i>
+    </button>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+        <a href="#home" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#about" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-user"></i> About
+        </a>
+        <a href="#skills" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-code"></i> Skills
+        </a>
+        <a href="#experience" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-briefcase"></i> Experience
+        </a>
+        <a href="#projects" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-project-diagram"></i> Projects
+        </a>
+        <a href="#education" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-graduation-cap"></i> Education
+        </a>
+        <a href="#contact" class="mobile-nav-link" onclick="toggleMenu()">
+            <i class="fas fa-envelope"></i> Contact
         </a>
     </nav>
 
@@ -1718,6 +1819,20 @@
 
     <script>
         // Mobile Menu Toggle
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            mobileNav.classList.toggle('active');
+            
+            // Change icon between bars and times
+            if (mobileNav.classList.contains('active')) {
+                menuIcon.className = 'fas fa-times';
+            } else {
+                menuIcon.className = 'fas fa-bars';
+            }
+        }
+
         // Scroll to Top functionality
         function scrollToTop() {
             window.scrollTo({
