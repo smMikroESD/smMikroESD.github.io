@@ -562,11 +562,11 @@
 
         .highlight-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 2rem;
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2.5rem;
+            padding: 3rem 2.5rem;
             background: #ffffff;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
@@ -605,10 +605,30 @@
             color: var(--text-secondary);
         }
 
+        @media (max-width: 1024px) {
+            .highlight-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .highlight-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
             .highlight-stats {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
 
@@ -1375,16 +1395,28 @@
         <div class="container">
             <div class="highlight-stats">
                 <div class="stat-item">
+                    <span class="stat-number">3.5+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
                     <span class="stat-number">15+</span>
                     <span class="stat-label">Projects Delivered</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">6+</span>
-                    <span class="stat-label">Microcontroller Platforms</span>
+                    <span class="stat-label">MCU Platforms</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">3</span>
                     <span class="stat-label">RTOS Environments</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4+</span>
+                    <span class="stat-label">Languages Mastered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Protocols & Tools</span>
                 </div>
             </div>
         </div>
@@ -1510,6 +1542,11 @@
                             <span class="tech-tag">LIS3DH</span>
                             <span class="tech-tag">DFU OTA</span>
                         </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://www.upwork.com/freelancers/~01f2da00b6dfd82883?p=2024860558589419520" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                                <i class="fas fa-external-link-alt"></i> View on Upwork
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1594,6 +1631,23 @@
                             <span class="tech-tag">STM32F4VGT6</span>
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">QR Code</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">U-Boot Dual Boot System</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Designed and implemented a flexible dual boot embedded Linux system using U-Boot bootloader with dynamic root filesystem switching on demand. Features runtime selection between multiple rootfs partitions enabling seamless system updates and A/B partition management for robust field deployments.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">U-Boot</span>
+                            <span class="tech-tag">Embedded Linux</span>
+                            <span class="tech-tag">Dual Boot</span>
+                            <span class="tech-tag">Rootfs Management</span>
+                            <span class="tech-tag">Bootloader</span>
                         </div>
                     </div>
                 </div>
