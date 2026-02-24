@@ -131,10 +131,15 @@
             font-size: 1.2rem;
         }
 
+        .nav-button i {
+            color: inherit;
+        }
+
         [data-theme="dark"] .nav-button {
             background: rgba(51, 65, 85, 0.95);
             border: 1px solid rgba(167, 139, 250, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .nav-button:hover {
@@ -861,6 +866,10 @@
         }
 
         /* Projects Section */
+        .projects-wrapper {
+            position: relative;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -869,11 +878,15 @@
 
         .project-card {
             background: #ffffff;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         [data-theme="dark"] .project-card {
@@ -898,7 +911,75 @@
 
         .project-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.2);
+            box-shadow: 0 15px 40px rgba(167, 139, 250, 0.2);
+        }
+
+        .project-nav-btn {
+            display: none;
+        }
+
+        .project-pagination {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .pagination-arrow {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .pagination-arrow:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .pagination-arrow:active {
+            transform: scale(0.9);
+        }
+
+        .pagination-dots {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .pagination-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .pagination-dot:hover {
+            background: var(--primary-color);
+            opacity: 0.7;
+        }
+
+        .pagination-dot.active {
+            background: var(--primary-color);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .pagination-dot {
+            background: var(--border-color);
+        }
+
+        [data-theme="dark"] .pagination-dot.active {
+            background: var(--secondary-color);
         }
 
         .project-header {
@@ -1278,8 +1359,39 @@
                 gap: 1rem;
             }
 
+            .projects-wrapper {
+                padding: 0 2.5rem;
+            }
+
             .projects-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(7, 100%);
+                gap: 1.5rem;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                padding: 1rem 0;
+                scroll-snap-type: x proximity;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                -webkit-overflow-scrolling: touch;
+                will-change: scroll-position;
+            }
+
+            .projects-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .project-card {
+                scroll-snap-align: start;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+
+            .project-pagination {
+                display: flex;
+            }
+
+            .project-nav-btn {
+                display: none;
             }
 
             .skills-grid {
@@ -1528,7 +1640,14 @@
     <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
+            <div class="projects-wrapper">
+                <button class="project-nav-btn prev" onclick="scrollProjects('left')" aria-label="Previous projects" style="display: none;">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="project-nav-btn next" onclick="scrollProjects('right')" aria-label="Next projects" style="display: none;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="projects-grid" id="projectsGrid">
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-title">BLE Beacon with LIS3DH</div>
@@ -1678,6 +1797,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="project-pagination" id="projectPagination">
+                <button class="pagination-arrow" onclick="scrollProjects('left')" aria-label="Previous project">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="pagination-dots" id="paginationDots"></div>
+                <button class="pagination-arrow" onclick="scrollProjects('right')" aria-label="Next project">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -2147,6 +2275,130 @@
                 // Resume animations
             }
         });
+
+        // Projects carousel navigation (mobile only)
+        let isScrolling = false;
+        let currentProjectIndex = 0;
+        
+        // Initialize pagination dots
+        function initProjectPagination() {
+            const container = document.querySelector('.projects-grid');
+            const cards = container.querySelectorAll('.project-card');
+            const dotsContainer = document.getElementById('paginationDots');
+            
+            // Clear existing dots
+            dotsContainer.innerHTML = '';
+            
+            // Create dots for each card
+            cards.forEach((card, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'pagination-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Go to project ${index + 1}`);
+                dot.onclick = () => scrollToProject(index);
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        // Update active dot based on scroll position
+        function updateActiveDot() {
+            if (window.innerWidth > 768) return; // Only on mobile/tablet
+            
+            const container = document.querySelector('.projects-grid');
+            const cards = container.querySelectorAll('.project-card');
+            const dots = document.querySelectorAll('.pagination-dot');
+            
+            const scrollLeft = container.scrollLeft;
+            const cardWidth = cards[0].offsetWidth;
+            const currentIndex = Math.round(scrollLeft / (cardWidth + 24)); // 24 is gap
+            
+            currentProjectIndex = currentIndex;
+            
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Scroll to specific project
+        function scrollToProject(index) {
+            const container = document.querySelector('.projects-grid');
+            const cards = container.querySelectorAll('.project-card');
+            
+            currentProjectIndex = index;
+            
+            cards[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'start'
+            });
+        }
+        
+        function scrollProjects(direction) {
+            const container = document.querySelector('.projects-grid');
+            
+            // Prevent multiple rapid clicks
+            if (isScrolling) return;
+            
+            // Only run if on mobile/tablet (when carousel is active)
+            if (window.innerWidth <= 768) {
+                const cards = container.querySelectorAll('.project-card');
+                const totalCards = cards.length;
+                
+                isScrolling = true;
+                
+                if (direction === 'left') {
+                    currentProjectIndex--;
+                    if (currentProjectIndex < 0) {
+                        currentProjectIndex = totalCards - 1; // Loop to last card
+                    }
+                } else {
+                    currentProjectIndex++;
+                    if (currentProjectIndex >= totalCards) {
+                        currentProjectIndex = 0; // Loop to first card
+                    }
+                }
+                
+                scrollToProject(currentProjectIndex);
+                
+                // Reset scrolling flag after animation completes
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 50); // Match this duration with CSS scroll-behavior smooth timing
+            }
+        }
+
+        // Optional: Add keyboard navigation for projects carousel (mobile only)
+        document.addEventListener('keydown', function(e) {
+            if (window.innerWidth <= 768) {
+                const projectsSection = document.getElementById('projects');
+                const rect = projectsSection.getBoundingClientRect();
+                const isProjectsVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+                
+                if (isProjectsVisible) {
+                    if (e.key === 'ArrowLeft') {
+                        scrollProjects('left');
+                    } else if (e.key === 'ArrowRight') {
+                        scrollProjects('right');
+                    }
+                }
+            }
+        });
+        
+        // Initialize pagination on load
+        window.addEventListener('load', function() {
+            initProjectPagination();
+        });
+        
+        // Update active dot on scroll
+        let scrollTimeout;
+        document.querySelector('.projects-grid').addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateActiveDot, 10);
+        });
     </script>
 
     <style>
@@ -2183,6 +2435,39 @@
             .btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
+            }
+
+            .projects-wrapper {
+                padding: 0 0.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(7, 100%);
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                scroll-snap-type: x proximity;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                -webkit-overflow-scrolling: touch;
+                will-change: scroll-position;
+            }
+
+            .projects-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .project-card {
+                scroll-snap-align: start;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+
+            .project-pagination {
+                display: flex;
+            }
+
+            .project-nav-btn {
+                display: none;
             }
         }
 
